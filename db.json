@@ -1,0 +1,22 @@
+{
+  "leads": [
+    {
+      "id": 1,
+      "name": "Sam Smith",
+      "email": "sam@gmail.com",
+      "message": "Please contact Sam."
+    },
+    {
+      "name": "John Doe",
+      "email": "john@gmail.com",
+      "message": "Feel free to contact John.",
+      "id": 2
+    },
+    {
+      "name": "Jane Williams",
+      "email": "jane@gmail.com",
+      "message": "Feel free to contact Jane.",
+      "id": 2
+    }
+  ]
+}
