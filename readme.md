@@ -13,3 +13,10 @@ npx create-react-app lead-manager-react
 yarn start
 ```
 
+## Mockup REST api
+
+To test REST api end-point, run the following command
+
+```shell
+yarn run rest-api
+```
