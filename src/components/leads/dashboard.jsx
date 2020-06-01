@@ -1,5 +1,13 @@
 import React from 'react'
 
-const Dashboard = () => <div>Dashboard</div>
+import Form from './form'
+import Leads from './leads'
+
+const Dashboard = () => (
+  <>
+    <Form />
+    <Leads />
+  </>
+)
 
 export default Dashboard

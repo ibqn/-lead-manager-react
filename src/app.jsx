@@ -1,5 +1,4 @@
 import React from 'react'
-import './app.css'
 
 import { Header } from './components/layout'
 import { Dashboard } from './components/leads'
