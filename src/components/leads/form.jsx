@@ -1,4 +1,7 @@
 import React, { useState } from 'react'
+import { dispatch, useDispatch } from 'react-redux'
+
+import { addLead } from '../../reducers/leads/actions'
 
 const initLead = {
   name: '',
@@ -9,12 +12,15 @@ const initLead = {
 const Form = () => {
   const [lead, setLead] = useState(initLead)
 
+  const dispatch = useDispatch()
+
   const handleChange = (name) => ({ target: { value } }) =>
     setLead({ ...lead, [name]: value })
 
   const handleSubmit = (event) => {
     event.preventDefault()
     console.log(lead)
+    dispatch(addLead(lead))
     setLead(initLead)
   }
 
