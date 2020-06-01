@@ -17,10 +17,15 @@ const getLeads = () => async (dispatch) => {
   }
 }
 
-const deleteLead = (id) => {
-  return {
-    type: DELETE_LEAD,
-    payload: id,
+const deleteLead = (id) => async (dispatch) => {
+  try {
+    await axios.delete(`/api/leads/${id}/`)
+    dispatch({
+      type: DELETE_LEAD,
+      payload: id,
+    })
+  } catch (error) {
+    console.log(`error ${error}`)
   }
 }
 
