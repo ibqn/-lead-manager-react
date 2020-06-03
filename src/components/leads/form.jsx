@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
-import { dispatch, useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux'
+
+import Card from 'react-bootstrap/Card'
 
 import { addLead } from '../../reducers/leads/actions'
 
@@ -25,7 +27,7 @@ const Form = () => {
   }
 
   return (
-    <div className="card card-body mt-4 mb-4">
+    <Card body className="mt-4 mb-4">
       <h1>Add Lead</h1>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
@@ -63,7 +65,7 @@ const Form = () => {
           </button>
         </div>
       </form>
-    </div>
+    </Card>
   )
 }
 

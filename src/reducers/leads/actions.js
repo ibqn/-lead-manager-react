@@ -12,7 +12,7 @@ const getLeads = () => async (dispatch) => {
       payload: leads,
     })
   } catch (error) {
-    console.log(error)
+    console.log('--->', error)
     // dispatch(getErrors(errors));
   }
 }
