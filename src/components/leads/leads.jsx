@@ -17,7 +17,7 @@ const Leads = () => {
   return (
     <>
       <h1>Leads List</h1>
-      <Table stripped hover>
+      <Table striped hover>
         <thead>
           <tr>
             <th>ID</th>
