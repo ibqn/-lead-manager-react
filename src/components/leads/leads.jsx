@@ -2,6 +2,8 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getLeads, deleteLead } from '../../reducers/leads/actions'
 
+import Table from 'react-bootstrap/Table'
+
 const Leads = () => {
   const leads = useSelector((state) => state.leads)
 
@@ -15,7 +17,7 @@ const Leads = () => {
   return (
     <>
       <h1>Leads List</h1>
-      <table className="table table-stripped">
+      <Table stripped hover>
         <thead>
           <tr>
             <th>ID</th>
@@ -43,7 +45,7 @@ const Leads = () => {
             </tr>
           ))}
         </tbody>
-      </table>
+      </Table>
     </>
   )
 }
