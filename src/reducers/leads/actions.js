@@ -1,5 +1,7 @@
 import axios from 'axios'
 
+import { setError } from '../errors/actions'
+
 import { GET_LEADS, DELETE_LEAD, ADD_LEAD } from './action-types'
 
 const getLeads = () => async (dispatch) => {
@@ -13,7 +15,19 @@ const getLeads = () => async (dispatch) => {
     })
   } catch (error) {
     console.log('--->', error)
-    // dispatch(getErrors(errors));
+    console.log(error.response)
+    console.log(
+      '---> resp',
+      error.response.data,
+      'status',
+      error.response.status
+    )
+    const { statusText, status } = error.response
+    const errorState = {
+      message: statusText,
+      status,
+    }
+    dispatch(setError(errorState))
   }
 }
 
