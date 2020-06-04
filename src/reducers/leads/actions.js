@@ -24,8 +24,9 @@ const getLeads = () => async (dispatch) => {
     )
     const { statusText, status } = error.response
     const errorState = {
-      message: statusText,
+      message: `Can't retrieve a list of leads due to ${statusText}`,
       status,
+      timestamp: Date.now(),
     }
     dispatch(setError(errorState))
   }

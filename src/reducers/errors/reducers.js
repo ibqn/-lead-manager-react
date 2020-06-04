@@ -3,6 +3,7 @@ import { SET_ERROR } from './action-types'
 const initialState = {
   message: {},
   status: null,
+  timestamp: null,
 }
 
 const errorReducer = (state = initialState, action) => {
@@ -12,6 +13,7 @@ const errorReducer = (state = initialState, action) => {
         ...state,
         message: action.payload.message,
         status: action.payload.status,
+        timestamp: action.payload.timestamp,
       }
     default:
       return state
