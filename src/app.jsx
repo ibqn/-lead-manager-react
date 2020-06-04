@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Header } from './components/layout'
+import { Header, Alerts } from './components/layout'
 import { Dashboard } from './components/leads'
 
 const App = () => {
@@ -8,6 +8,7 @@ const App = () => {
     <>
       <Header />
       <div className="container">
+        <Alerts />
         <Dashboard />
       </div>
     </>
