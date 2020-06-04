@@ -1,8 +1,5 @@
 import { SET_ERROR } from './action-types'
 
-const setError = ({ message, status = null }) => ({
-  type: SET_ERROR,
-  payload: { message, status },
-})
+const setError = (error) => ({ type: SET_ERROR, payload: error })
 
 export { setError }
