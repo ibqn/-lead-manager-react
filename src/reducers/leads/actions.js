@@ -1,6 +1,7 @@
 import axios from 'axios'
 
 import { setError } from '../errors/actions'
+import { setMessage } from '../messages/actions'
 
 import { GET_LEADS, DELETE_LEAD, ADD_LEAD } from './action-types'
 
@@ -53,6 +54,7 @@ const addLead = (lead) => async (dispatch) => {
       type: ADD_LEAD,
       payload: newLead,
     })
+    dispatch(setMessage({ message: 'A new lead was added' }))
   } catch (error) {
     console.log(error)
   }
