@@ -7,11 +7,16 @@ import Fade from 'react-bootstrap/Fade'
 const Alerts = () => {
   const [show, setShow] = useState(false)
   const error = useSelector((state) => state.error)
+  const { message } = useSelector((state) => state.message)
 
   useEffect(() => {
     setShow(error.timestamp !== null)
     console.log(error)
   }, [error])
+
+  useEffect(() => {
+    console.log(`message ${message}`)
+  }, [message])
 
   return (
     <Alert
