@@ -15,14 +15,6 @@ const getLeads = () => async (dispatch) => {
       payload: leads,
     })
   } catch (error) {
-    console.log('--->', error)
-    console.log(error.response)
-    console.log(
-      '---> resp',
-      error.response.data,
-      'status',
-      error.response.status
-    )
     const { statusText, status } = error.response
     const errorState = {
       message: `Can't retrieve a list of leads due to ${statusText}`,
@@ -40,12 +32,19 @@ const deleteLead = (id) => async (dispatch) => {
       type: DELETE_LEAD,
       payload: id,
     })
+    dispatch(setMessage({ message: 'Lead was removed' }))
   } catch (error) {
-    console.log(`error ${error}`)
+    const { statusText, status } = error.response
+    const errorState = {
+      message: `Can't remove lead due to ${statusText}`,
+      status,
+      timestamp: Date.now(),
+    }
+    dispatch(setError(errorState))
   }
 }
 
-const addLead = (lead) => async (dispatch) => {
+const addLead = (lead, actionId) => async (dispatch) => {
   try {
     const resp = await axios.post('api/leads', lead)
     const newLead = resp.data
@@ -53,10 +52,17 @@ const addLead = (lead) => async (dispatch) => {
     dispatch({
       type: ADD_LEAD,
       payload: newLead,
+      uniqueId: actionId,
     })
     dispatch(setMessage({ message: 'A new lead was added' }))
   } catch (error) {
-    console.log(error)
+    const { statusText, status } = error.response
+    const errorState = {
+      message: `Can't add lead due to ${statusText}`,
+      status,
+      timestamp: Date.now(),
+    }
+    dispatch(setError(errorState))
   }
 }
 

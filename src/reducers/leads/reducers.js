@@ -2,6 +2,7 @@ import { GET_LEADS, DELETE_LEAD, ADD_LEAD } from './action-types'
 
 const initialState = {
   leads: [],
+  uniqueId: null,
 }
 
 const leadReducer = (state = initialState, action) => {
@@ -20,6 +21,7 @@ const leadReducer = (state = initialState, action) => {
       return {
         ...state,
         leads: state.leads.concat(action.payload),
+        uniqueId: action.uniqueId,
       }
     default:
       return state

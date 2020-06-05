@@ -1,5 +1,6 @@
-import React, { useState } from 'react'
-import { useDispatch } from 'react-redux'
+import React, { useState, useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { uniqueId as generateId } from 'lodash'
 
 import Card from 'react-bootstrap/Card'
 import Form from 'react-bootstrap/Form'
@@ -15,7 +16,10 @@ const initLead = {
 
 const AddLeadForm = () => {
   const [lead, setLead] = useState(initLead)
+  const [actionId, setActionId] = useState(generateId())
   const [validated, setValidated] = useState(false)
+
+  const leads = useSelector((state) => state.leads)
 
   const dispatch = useDispatch()
 
@@ -34,9 +38,15 @@ const AddLeadForm = () => {
     }
 
     setValidated(false)
-    dispatch(addLead(lead))
-    setLead(initLead)
+    dispatch(addLead(lead, actionId))
   }
+
+  useEffect(() => {
+    const uniqueId = leads.uniqueId
+    // console.log('unique id', uniqueId, 'action id ', actionId)
+    uniqueId !== null && uniqueId === actionId && setLead(initLead)
+    setActionId(generateId())
+  }, [leads])
 
   return (
     <Card body className="mt-4 mb-4">
