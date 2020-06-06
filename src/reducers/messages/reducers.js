@@ -1,6 +1,8 @@
 import { SET_MESSAGE } from './action-types'
 
-const initialState = {}
+const initialState = {
+  message: null,
+}
 
 const messageReducer = (state = initialState, action) => {
   switch (action.type) {

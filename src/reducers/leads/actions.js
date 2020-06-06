@@ -9,7 +9,6 @@ const getLeads = () => async (dispatch) => {
   try {
     const resp = await axios.get('/api/leads')
     const leads = resp.data
-    console.log('get leads', leads)
     dispatch({
       type: GET_LEADS,
       payload: leads,

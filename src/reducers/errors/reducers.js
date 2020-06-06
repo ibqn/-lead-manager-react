@@ -1,7 +1,7 @@
 import { SET_ERROR } from './action-types'
 
 const initialState = {
-  message: {},
+  message: null,
   status: null,
   timestamp: null,
 }

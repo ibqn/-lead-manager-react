@@ -43,7 +43,6 @@ const AddLeadForm = () => {
 
   useEffect(() => {
     const uniqueId = leads.uniqueId
-    // console.log('unique id', uniqueId, 'action id ', actionId)
     uniqueId !== null && uniqueId === actionId && setLead(initLead)
     setActionId(generateId())
   }, [leads])

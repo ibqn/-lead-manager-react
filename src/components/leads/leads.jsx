@@ -10,7 +10,6 @@ const Leads = () => {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    console.log('get leads')
     dispatch(getLeads())
   }, [dispatch])
 
