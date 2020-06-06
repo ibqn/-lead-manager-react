@@ -5,9 +5,11 @@ import { setMessage } from '../messages/actions'
 
 import { GET_LEADS, DELETE_LEAD, ADD_LEAD } from './action-types'
 
+const API_ROUTE = '/api/leads/'
+
 const getLeads = () => async (dispatch) => {
   try {
-    const resp = await axios.get('/api/leads')
+    const resp = await axios.get(API_ROUTE)
     const leads = resp.data
     dispatch({
       type: GET_LEADS,
@@ -26,7 +28,7 @@ const getLeads = () => async (dispatch) => {
 
 const deleteLead = (id) => async (dispatch) => {
   try {
-    await axios.delete(`/api/leads/${id}/`)
+    await axios.delete(`${API_ROUTE}${id}/`)
     dispatch({
       type: DELETE_LEAD,
       payload: id,
@@ -45,7 +47,7 @@ const deleteLead = (id) => async (dispatch) => {
 
 const addLead = (lead, actionId) => async (dispatch) => {
   try {
-    const resp = await axios.post('api/leads', lead)
+    const resp = await axios.post(API_ROUTE, lead)
     const newLead = resp.data
     console.log('add lead', resp.data)
     dispatch({
