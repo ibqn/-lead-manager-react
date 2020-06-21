@@ -67,7 +67,9 @@ const Register = () => {
             />
           </Form.Group>
           <Form.Group>
-            <Button>Sign Up</Button>
+            <Button type="submit" variant="primary">
+              Create account
+            </Button>
           </Form.Group>
           <p>
             Already have an account? <Link to="/login">Sign in</Link>
