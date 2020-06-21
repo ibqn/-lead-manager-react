@@ -23,7 +23,7 @@ const AddLeadForm = () => {
 
   const dispatch = useDispatch()
 
-  const handleChange = (name) => ({ target: { value } }) =>
+  const handleChange = ({ target: { name, value } }) =>
     setLead({ ...lead, [name]: value })
 
   const handleSubmit = (event) => {
@@ -58,7 +58,7 @@ const AddLeadForm = () => {
             type="text"
             placeholder="Name"
             name="name"
-            onChange={handleChange('name')}
+            onChange={handleChange}
             value={lead.name}
           />
           <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
@@ -74,7 +74,7 @@ const AddLeadForm = () => {
             type="email"
             name="email"
             placeholder="Email"
-            onChange={handleChange('email')}
+            onChange={handleChange}
             value={lead.email}
           />
           <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
@@ -87,7 +87,7 @@ const AddLeadForm = () => {
           <Form.Control
             as="textarea"
             name="message"
-            onChange={handleChange('message')}
+            onChange={handleChange}
             value={lead.message}
           />
           <Form.Control.Feedback>

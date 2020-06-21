@@ -17,7 +17,7 @@ const Register = () => {
 
   const handleSubmit = () => {}
 
-  const handleChange = (name) => ({ target: { value } }) =>
+  const handleChange = ({ target: { name, value } }) =>
     setState({ ...state, [name]: value })
 
   return (
@@ -32,7 +32,7 @@ const Register = () => {
               required
               type="text"
               name="username"
-              onChange={handleChange('username')}
+              onChange={handleChange}
               value={state.username}
             />
           </Form.Group>
@@ -42,7 +42,7 @@ const Register = () => {
               required
               type="email"
               name="email"
-              onChange={handleChange('email')}
+              onChange={handleChange}
               value={state.email}
             />
           </Form.Group>
@@ -52,7 +52,7 @@ const Register = () => {
               required
               type="password"
               name="password"
-              onChange={handleChange('password')}
+              onChange={handleChange}
               value={state.password}
             />
           </Form.Group>
@@ -62,7 +62,7 @@ const Register = () => {
               required
               type="password"
               name="password2"
-              onChange={handleChange('password2')}
+              onChange={handleChange}
               value={state.password2}
             />
           </Form.Group>
