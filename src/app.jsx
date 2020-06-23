@@ -3,6 +3,7 @@ import React from 'react'
 import { Header, Alerts } from './components/layout'
 import { Dashboard } from './components/leads'
 import { Register, Login } from './components/accounts'
+import { PrivateRoute } from './components/auth'
 
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
@@ -13,9 +14,9 @@ const App = () => {
       <div className="container">
         <Alerts />
         <Switch>
-          <Route exact path="/">
+          <PrivateRoute exact path="/">
             <Dashboard />
-          </Route>
+          </PrivateRoute>
           <Route exact path="/register">
             <Register />
           </Route>
