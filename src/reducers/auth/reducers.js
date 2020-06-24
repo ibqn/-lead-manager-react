@@ -1,8 +1,10 @@
 import {
   USER_LOADING,
   USER_LOADED,
-  AUTH_FAILURE,
-  AUTH_SUCCESS,
+  LOGIN_FAILURE,
+  LOGIN_SUCCESS,
+  LOGOUT_SUCCESS,
+  LOGOUT_FAILURE,
 } from './action-types'
 
 const initialState = {
@@ -25,7 +27,7 @@ const authReducer = (state = initialState, action) => {
         user: action.payload,
       }
 
-    case AUTH_SUCCESS:
+    case LOGIN_SUCCESS:
       localStorage.setItem('token', action.payload.token)
       return {
         ...state,
@@ -34,7 +36,9 @@ const authReducer = (state = initialState, action) => {
         user: action.payload.user,
       }
 
-    case AUTH_FAILURE:
+    case LOGOUT_SUCCESS:
+    case LOGOUT_FAILURE:
+    case LOGIN_FAILURE:
       localStorage.removeItem('token')
       return { ...initialState, token: null }
 
