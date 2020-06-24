@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 
 import { Header, Alerts } from './components/layout'
 import { Dashboard } from './components/leads'
@@ -7,7 +8,17 @@ import { PrivateRoute } from './components/auth'
 
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
+import { loadUser } from './reducers/auth/actions'
+
 const App = () => {
+  const { token } = useSelector((state) => state.auth)
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    console.log('app')
+    dispatch(loadUser(token))
+  }, [dispatch, token])
+
   return (
     <Router>
       <Header />
