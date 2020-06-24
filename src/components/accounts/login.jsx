@@ -1,25 +1,36 @@
 import React, { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 
 import Card from 'react-bootstrap/Card'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import Col from 'react-bootstrap/Col'
 
+import { loginUser } from '../../reducers/auth/actions'
+
 const Login = () => {
   const [state, setState] = useState({
     username: '',
-    email: '',
     password: '',
-    password2: '',
   })
 
-  const handleSubmit = () => {}
+  const { isAuthenticated } = useSelector((state) => state.auth)
+  const dispatch = useDispatch()
+
+  const handleSubmit = (event) => {
+    event.preventDefault()
+    console.log('login')
+    dispatch(loginUser(state))
+  }
 
   const handleChange = ({ target: { name, value } }) =>
     setState({ ...state, [name]: value })
 
+  if (isAuthenticated) {
+    return <Redirect to="/" />
+  }
   return (
     <Col md={6} className="m-auto">
       {JSON.stringify(state)}
@@ -27,13 +38,13 @@ const Login = () => {
         <h2 className="text-center">Sign in</h2>
         <Form onSubmit={handleSubmit}>
           <Form.Group>
-            <Form.Label>Email</Form.Label>
+            <Form.Label>Username</Form.Label>
             <Form.Control
               required
-              type="email"
-              name="email"
+              type="text"
+              name="username"
               onChange={handleChange}
-              value={state.email}
+              value={state.username}
             />
           </Form.Group>
           <Form.Group>
