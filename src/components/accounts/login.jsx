@@ -10,11 +10,13 @@ import Col from 'react-bootstrap/Col'
 
 import { loginUser } from '../../reducers/auth/actions'
 
+const initialState = {
+  username: '',
+  password: '',
+}
+
 const Login = () => {
-  const [state, setState] = useState({
-    username: '',
-    password: '',
-  })
+  const [state, setState] = useState(initialState)
 
   const { isAuthenticated } = useSelector((state) => state.auth)
   const dispatch = useDispatch()
@@ -23,6 +25,8 @@ const Login = () => {
     event.preventDefault()
     console.log('login')
     dispatch(loginUser(state))
+
+    setState({ ...initialState })
   }
 
   const handleChange = ({ target: { name, value } }) =>
@@ -33,7 +37,6 @@ const Login = () => {
   }
   return (
     <Col md={6} className="m-auto">
-      {JSON.stringify(state)}
       <Card body className="mt-5">
         <h2 className="text-center">Sign in</h2>
         <Form onSubmit={handleSubmit}>

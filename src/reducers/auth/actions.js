@@ -38,11 +38,9 @@ const loginUser = (userData) => async (dispatch) => {
     const response = await axios.post('/api/auth/login', userData, config)
     dispatch({ type: LOGIN_SUCCESS, payload: response.data })
   } catch (error) {
-    const { data: message, status } = error.response
     dispatch(
       setError({
-        message: JSON.stringify(message),
-        status,
+        message: 'Incorrect Credentials',
         timestamp: Date.now(),
       })
     )
