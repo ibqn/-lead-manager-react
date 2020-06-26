@@ -14,7 +14,6 @@ const Header = () => {
   const dispatch = useDispatch()
 
   const handleLogout = () => {
-    console.log('logout and token', token)
     dispatch(logoutUser(token))
   }
 
