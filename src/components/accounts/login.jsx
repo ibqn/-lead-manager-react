@@ -23,7 +23,6 @@ const Login = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    console.log('login')
     dispatch(loginUser(state))
 
     setState({ ...initialState })
