@@ -7,7 +7,10 @@ import {
   LOGIN_SUCCESS,
   LOGOUT_SUCCESS,
   LOGOUT_FAILURE,
+  REGISTER_SUCCESS,
+  REGISTER_FAILURE,
 } from './action-types'
+
 import { setError } from '../errors/actions'
 
 const loadUser = (token) => async (dispatch) => {
@@ -48,6 +51,25 @@ const loginUser = (userData) => async (dispatch) => {
   }
 }
 
+const registerUser = (userData) => async (dispatch) => {
+  const config = {
+    headers: { 'content-Type': 'application/json' },
+  }
+
+  try {
+    const response = await axios.post('/api/auth/register', userData, config)
+    dispatch({ type: REGISTER_SUCCESS, payload: response.data })
+  } catch (error) {
+    dispatch(
+      setError({
+        message: 'Could not create new account',
+        timestamp: Date.now(),
+      })
+    )
+    dispatch({ type: REGISTER_FAILURE })
+  }
+}
+
 const logoutUser = (token) => async (dispatch) => {
   const config = {
     headers: { 'content-Type': 'application/json' },
@@ -73,4 +95,4 @@ const logoutUser = (token) => async (dispatch) => {
   }
 }
 
-export { loadUser, loginUser, logoutUser }
+export { loadUser, loginUser, logoutUser, registerUser }
