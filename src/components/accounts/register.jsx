@@ -49,7 +49,6 @@ const Register = () => {
 
   return (
     <Col md={6} className="m-auto">
-      {JSON.stringify(state)}
       <Card body className="mt-5">
         <h2 className="text-center">Sign up</h2>
         <Form onSubmit={handleSubmit}>
