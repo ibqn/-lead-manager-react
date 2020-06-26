@@ -34,10 +34,10 @@ const Register = () => {
       dispatch(
         setError({ message: 'Passwords do not match', timestamp: Date.now() })
       )
+    } else {
+      dispatch(registerUser({ password2, ...state }))
+      setState({ ...initialState })
     }
-
-    dispatch(registerUser({ password2, ...state }))
-    setState({ ...initialState })
   }
 
   const handleChange = ({ target: { name, value } }) =>
