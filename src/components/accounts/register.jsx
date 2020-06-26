@@ -1,24 +1,51 @@
 import React, { useState } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 
 import Card from 'react-bootstrap/Card'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import Col from 'react-bootstrap/Col'
+import { REGISTER_FAILURE } from '../../reducers/auth/action-types'
+import { setError } from '../../reducers/errors/actions'
+import { registerUser } from '../../reducers/auth/actions'
+
+const initialState = {
+  username: '',
+  email: '',
+  password: '',
+  password2: '',
+}
 
 const Register = () => {
-  const [state, setState] = useState({
-    username: '',
-    email: '',
-    password: '',
-    password2: '',
-  })
+  const dispatch = useDispatch()
 
-  const handleSubmit = () => {}
+  const [state, setState] = useState(initialState)
+
+  const { isAuthenticated } = useSelector((state) => state.auth)
+
+  const handleSubmit = (event) => {
+    event.preventDefault()
+
+    const { password, password2 } = state
+    if (password !== password2) {
+      dispatch({ type: REGISTER_FAILURE })
+      dispatch(
+        setError({ message: 'Passwords do not match', timestamp: Date.now() })
+      )
+    }
+
+    dispatch(registerUser({ password2, ...state }))
+    setState({ ...initialState })
+  }
 
   const handleChange = ({ target: { name, value } }) =>
     setState({ ...state, [name]: value })
+
+  if (isAuthenticated) {
+    return <Redirect to="/" />
+  }
 
   return (
     <Col md={6} className="m-auto">
