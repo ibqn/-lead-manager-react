@@ -9,12 +9,12 @@ import Button from 'react-bootstrap/Button'
 import { logoutUser } from '../../reducers/auth/actions'
 
 const Header = () => {
-  const { isAuthenticated, user, token } = useSelector((state) => state.auth)
+  const { isAuthenticated, user } = useSelector((state) => state.auth)
 
   const dispatch = useDispatch()
 
   const handleLogout = () => {
-    dispatch(logoutUser(token))
+    dispatch(logoutUser())
   }
 
   const authLinks = () => (

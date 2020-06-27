@@ -12,17 +12,12 @@ import {
 } from './action-types'
 
 import { setError } from '../errors/actions'
+import { makeConfig } from '../../utils'
 
-const loadUser = (token) => async (dispatch) => {
+const loadUser = () => async (dispatch, getState) => {
   dispatch({ type: USER_LOADING })
 
-  const config = {
-    headers: { 'content-Type': 'application/json' },
-  }
-
-  if (token) {
-    config.headers['Authorization'] = `Token ${token}`
-  }
+  const config = makeConfig(getState)
 
   try {
     const response = await axios.get('/api/auth/user', config)
@@ -70,14 +65,8 @@ const registerUser = (userData) => async (dispatch) => {
   }
 }
 
-const logoutUser = (token) => async (dispatch) => {
-  const config = {
-    headers: { 'content-Type': 'application/json' },
-  }
-
-  if (token) {
-    config.headers['Authorization'] = `Token ${token}`
-  }
+const logoutUser = () => async (dispatch, getState) => {
+  const config = makeConfig(getState)
 
   try {
     await axios.post('/api/auth/logout', null, config)

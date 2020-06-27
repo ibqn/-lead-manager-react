@@ -5,11 +5,15 @@ import { setMessage } from '../messages/actions'
 
 import { GET_LEADS, DELETE_LEAD, ADD_LEAD } from './action-types'
 
+import { makeConfig } from '../../utils'
+
 const API_ROUTE = '/api/leads/'
 
-const getLeads = () => async (dispatch) => {
+const getLeads = () => async (dispatch, getState) => {
   try {
-    const resp = await axios.get(API_ROUTE)
+    const config = makeConfig(getState)
+
+    const resp = await axios.get(API_ROUTE, config)
     const leads = resp.data
     dispatch({
       type: GET_LEADS,
@@ -26,9 +30,11 @@ const getLeads = () => async (dispatch) => {
   }
 }
 
-const deleteLead = (id) => async (dispatch) => {
+const deleteLead = (id) => async (dispatch, getState) => {
   try {
-    await axios.delete(`${API_ROUTE}${id}/`)
+    const config = makeConfig(getState)
+
+    await axios.delete(`${API_ROUTE}${id}/`, config)
     dispatch({
       type: DELETE_LEAD,
       payload: id,
@@ -45,11 +51,12 @@ const deleteLead = (id) => async (dispatch) => {
   }
 }
 
-const addLead = (lead, actionId) => async (dispatch) => {
+const addLead = (lead, actionId) => async (dispatch, getState) => {
   try {
-    const resp = await axios.post(API_ROUTE, lead)
+    const config = makeConfig(getState)
+
+    const resp = await axios.post(API_ROUTE, lead, config)
     const newLead = resp.data
-    console.log('add lead', resp.data)
     dispatch({
       type: ADD_LEAD,
       payload: newLead,
