@@ -9,22 +9,18 @@ import { uniqueId } from 'lodash'
 const Alerts = () => {
   const [alertsPool, setAlertsPool] = useState([])
 
-  // const [show, setShow] = useState(false)
   const error = useSelector((state) => state.error)
   const info = useSelector((state) => state.message)
 
   const updatePool = (alert) => setAlertsPool([alert, ...alertsPool])
 
   useEffect(() => {
-    console.log('error', error)
     if (error.message !== null) {
       updatePool({ ...error, variant: 'danger', show: true, id: uniqueId() })
     }
   }, [error])
 
   useEffect(() => {
-    console.log('message', info)
-
     if (info.message !== null) {
       updatePool({ ...info, variant: 'info', show: true, id: uniqueId() })
     }
